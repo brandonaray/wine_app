@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "reactstrap";
 
 class Home extends React.Component {
   state = {
@@ -10,6 +11,7 @@ class Home extends React.Component {
       <div className="Home">
         <p>{this.props.name}</p>
         <p>{this.state.store}</p>
+        <Button color="danger">Danger!</Button>
       </div>
     );
   }
