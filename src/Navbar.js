@@ -12,6 +12,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
+import "./Winenav.css";
 
 class Winenav extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class Winenav extends React.Component {
   render() {
     return (
       <div className="Winenav">
-        <Navbar color="light" light expand="md">
+        <Navbar expand="md">
           <NavbarBrand href="/">Wine Cooler!!!</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
