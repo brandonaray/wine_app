@@ -2,6 +2,7 @@ import React from "react";
 import * as Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/umd/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/umd/parse";
+import "./Search.css";
 
 const people = [
   {
