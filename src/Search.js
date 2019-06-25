@@ -3,6 +3,7 @@ import * as Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/umd/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/umd/parse";
 import "./Search.css";
+import data from "./data.json";
 
 const people = [
   {
@@ -32,7 +33,7 @@ function escapeRegexCharacters(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-function getSuggestions(value) {
+function getSuggestions(value, wines) {
   const escapedValue = escapeRegexCharacters(value.trim());
 
   if (escapedValue === "") {
@@ -41,15 +42,15 @@ function getSuggestions(value) {
 
   const regex = new RegExp("\\b" + escapedValue, "i");
 
-  return people.filter(person => regex.test(getSuggestionValue(person)));
+  return wines.filter(person => regex.test(getSuggestionValue(person)));
 }
 
 function getSuggestionValue(suggestion) {
-  return `${suggestion.first} ${suggestion.last}`;
+  return `${suggestion.wine} ${suggestion.vintage} ${suggestion.color}`;
 }
 
 function renderSuggestion(suggestion, { query }) {
-  const suggestionText = `${suggestion.first} ${suggestion.last}`;
+  const suggestionText = `${suggestion.wine} ${suggestion.vintage} ${suggestion.color}`;
   const matches = AutosuggestHighlightMatch(suggestionText, query);
   const parts = AutosuggestHighlightParse(suggestionText, matches);
 
@@ -79,6 +80,12 @@ class Search extends React.Component {
       suggestions: []
     };
   }
+  componentDidMount() {
+    // this.setState({
+    //   wines: data.results
+    // });
+    // console.log(this.props.wines);
+  }
 
   onChange = (event, { newValue, method }) => {
     this.setState({
@@ -88,7 +95,7 @@ class Search extends React.Component {
 
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
-      suggestions: getSuggestions(value)
+      suggestions: getSuggestions(value, this.props.wines)
     });
   };
 
@@ -99,6 +106,7 @@ class Search extends React.Component {
   };
 
   render() {
+    console.log(this.props.wines);
     const { value, suggestions } = this.state;
     const inputProps = {
       placeholder: "Type 'c'",

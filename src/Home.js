@@ -14,17 +14,14 @@ class Home extends React.Component {
     this.setState({
       wines: data.results
     });
-    console.log(data.results);
+    console.log(this.state.wines);
   }
 
   render() {
     return (
       <div className="Home">
         <p>{this.props.name}</p>
-        <Search />
-        {this.state.wines.map(wine => {
-          return <Wine key={wine.wine_id} wine={wine} />;
-        })}
+        <Search wines={this.state.wines} />
       </div>
     );
   }
