@@ -1,17 +1,27 @@
 import React from "react";
 import Search from "./Search.js";
+import Axios from "axios";
+import data from "./data.json";
+import Wine from "./Wine.js";
 
 class Home extends React.Component {
   state = {
-    store: "new store"
+    store: "new store",
+    wines: []
   };
+
+  componentDidMount() {
+    this.setState({
+      wines: data.results
+    });
+    console.log(this.state.wines);
+  }
 
   render() {
     return (
       <div className="Home">
         <p>{this.props.name}</p>
-        <p>{this.state.store}</p>
-        <Search />
+        <Search wines={this.state.wines} />
       </div>
     );
   }
