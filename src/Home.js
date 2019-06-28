@@ -3,6 +3,7 @@ import Search from "./Search.js";
 import Axios from "axios";
 import data from "./data.json";
 import Wine from "./Wine.js";
+import WineModal from "./WineModal.js";
 
 class Home extends React.Component {
   state = {
@@ -22,6 +23,7 @@ class Home extends React.Component {
       <div className="Home">
         <p>{this.props.name}</p>
         <Search wines={this.state.wines} />
+        <WineModal />
       </div>
     );
   }

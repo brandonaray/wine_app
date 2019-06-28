@@ -109,7 +109,7 @@ class Search extends React.Component {
     console.log(this.props.wines);
     const { value, suggestions } = this.state;
     const inputProps = {
-      placeholder: "Type 'c'",
+      placeholder: "Type in wine, vintage, color, etc.",
       value,
       onChange: this.onChange
     };
