@@ -46,7 +46,7 @@ function getSuggestions(value, wines) {
 }
 
 function getSuggestionValue(suggestion) {
-  return `${suggestion.wine} ${suggestion.vintage} ${suggestion.color}`;
+  return `${suggestion.wine}`;
 }
 
 function renderSuggestion(suggestion, { query }) {
@@ -88,6 +88,9 @@ class Search extends React.Component {
   }
 
   onChange = (event, { newValue, method }) => {
+    if (method === "click") {
+      this.props.handleSelect(newValue);
+    }
     this.setState({
       value: newValue
     });
@@ -106,7 +109,6 @@ class Search extends React.Component {
   };
 
   render() {
-    console.log(this.props.wines);
     const { value, suggestions } = this.state;
     const inputProps = {
       placeholder: "Type in wine, vintage, color, etc.",
@@ -115,14 +117,17 @@ class Search extends React.Component {
     };
 
     return (
-      <Autosuggest
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={inputProps}
-      />
+      <div>
+        <p>{this.state.selectedId}</p>
+        <Autosuggest
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          inputProps={inputProps}
+        />
+      </div>
     );
   }
 }

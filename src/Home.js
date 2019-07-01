@@ -8,7 +8,8 @@ import WineModal from "./WineModal.js";
 class Home extends React.Component {
   state = {
     store: "new store",
-    wines: []
+    wines: [],
+    selectedWine: ""
   };
 
   componentDidMount() {
@@ -18,12 +19,18 @@ class Home extends React.Component {
     console.log(this.state.wines);
   }
 
+  handleSelect = value => {
+    this.setState({
+      selectedWine: value
+    });
+  };
+
   render() {
     return (
       <div className="Home">
         <p>{this.props.name}</p>
-        <Search wines={this.state.wines} />
-        <WineModal />
+        <Search wines={this.state.wines} handleSelect={this.handleSelect} />
+        <WineModal selectedWine={this.state.selectedWine} />
       </div>
     );
   }
