@@ -5,29 +5,6 @@ import AutosuggestHighlightParse from "autosuggest-highlight/umd/parse";
 import "./Search.css";
 import data from "./data.json";
 
-const people = [
-  {
-    first: "Charlie",
-    last: "Brown",
-    twitter: "dancounsell"
-  },
-  {
-    first: "Charlotte",
-    last: "White",
-    twitter: "mtnmissy"
-  },
-  {
-    first: "Chloe",
-    last: "Jones",
-    twitter: "ladylexy"
-  },
-  {
-    first: "Cooper",
-    last: "King",
-    twitter: "steveodom"
-  }
-];
-
 // https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
 function escapeRegexCharacters(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -46,7 +23,7 @@ function getSuggestions(value, wines) {
 }
 
 function getSuggestionValue(suggestion) {
-  return `${suggestion.wine} ${suggestion.vintage} ${suggestion.color}`;
+  return `${suggestion.wine}`;
 }
 
 function renderSuggestion(suggestion, { query }) {
@@ -88,6 +65,9 @@ class Search extends React.Component {
   }
 
   onChange = (event, { newValue, method }) => {
+    if (method === "click") {
+      this.props.handleSelect(newValue);
+    }
     this.setState({
       value: newValue
     });
@@ -106,23 +86,25 @@ class Search extends React.Component {
   };
 
   render() {
-    console.log(this.props.wines);
     const { value, suggestions } = this.state;
     const inputProps = {
-      placeholder: "Type 'c'",
+      placeholder: "Type in wine, vintage, color, etc.",
       value,
       onChange: this.onChange
     };
 
     return (
-      <Autosuggest
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={inputProps}
-      />
+      <div>
+        <p>{this.state.selectedId}</p>
+        <Autosuggest
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          inputProps={inputProps}
+        />
+      </div>
     );
   }
 }
