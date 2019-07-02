@@ -29,8 +29,8 @@ class WineModal extends React.Component {
 
     return (
       <div>
-        <Button color="danger" onClick={this.toggle}>
-          {this.props.buttonLabel}
+        <Button color="light" onClick={this.toggle}>
+          Search
         </Button>
 
         {selectedWine && (

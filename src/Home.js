@@ -13,9 +13,13 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({
-      wines: data.results
+    Axios.get("https://actualize-wine-proxy.herokuapp.com/wines").then(response => {
+      // console.log(data);
+      this.setState({
+        wines: response.data.results
+      });
     });
+
     console.log(this.state.wines);
   }
 
@@ -30,7 +34,7 @@ class Home extends React.Component {
       <div className="Home">
         <p>{this.props.name}</p>
         <Search wines={this.state.wines} handleSelect={this.handleSelect} />
-        <WineModal selectedWine={this.state.selectedWine} />
+        <WineModal wines={this.state.wines} selectedWine={this.state.selectedWine} />
       </div>
     );
   }

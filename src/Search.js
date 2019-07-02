@@ -5,29 +5,6 @@ import AutosuggestHighlightParse from "autosuggest-highlight/umd/parse";
 import "./Search.css";
 import data from "./data.json";
 
-const people = [
-  {
-    first: "Charlie",
-    last: "Brown",
-    twitter: "dancounsell"
-  },
-  {
-    first: "Charlotte",
-    last: "White",
-    twitter: "mtnmissy"
-  },
-  {
-    first: "Chloe",
-    last: "Jones",
-    twitter: "ladylexy"
-  },
-  {
-    first: "Cooper",
-    last: "King",
-    twitter: "steveodom"
-  }
-];
-
 // https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
 function escapeRegexCharacters(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
