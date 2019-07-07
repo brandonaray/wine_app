@@ -32,7 +32,7 @@ class Winenav extends React.Component {
     return (
       <div className="Winenav">
         <Navbar expand="md">
-          <NavbarBrand href="/">Wine Cooler!!!</NavbarBrand>
+          <NavbarBrand href="/">Wine Cooler</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

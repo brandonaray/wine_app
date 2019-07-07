@@ -49,10 +49,10 @@ class WineModal extends React.Component {
             </ModalBody>
             <ModalFooter>
               <Button color="primary" onClick={this.toggle}>
-                Do Something
+                Add To My Wines
               </Button>{" "}
               <Button color="secondary" onClick={this.toggle}>
-                Cancel
+                Back
               </Button>
             </ModalFooter>
           </Modal>
