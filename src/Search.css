@@ -56,6 +56,7 @@ body {
 .react-autosuggest__suggestion {
   cursor: pointer;
   padding: 10px 20px;
+  background-color: #fff;
 }
 
 .react-autosuggest__suggestion:not(:first-child) {
